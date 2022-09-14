@@ -5,8 +5,8 @@ struct Address
 {
     std::string name;
     std::string country = "Россия", city, street;
-    unsigned short homeNum, roomNum;
-    unsigned int postcode;
+    unsigned short homeNum = 0, roomNum = 0; // Студия настаивает, что бы переменные были проинициализированы
+    unsigned int postcode = 0; // Студия настаивает, что бы переменные были проинициализированы
 };
 
 void printAddress(const Address&);
