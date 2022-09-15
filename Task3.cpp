@@ -9,7 +9,7 @@ struct Address
     unsigned int postcode = 0; // Студия настаивает, что бы переменные были проинициализированы
 };
 
-void printAddress(const Address&);
+void printAddress(const Address*);
 
 int main(int argc, char** argv)
 {
@@ -20,7 +20,9 @@ int main(int argc, char** argv)
     std::cout << "Задача 3. Вывод структуры\n";
     std::cout << "-------------------------\n" << std::endl;
 
+    // адрес Джона
     Address jonn{ "Джонн", "USA", "NewYork", "applestr", 123, 25, 235426};
+    // адрес Лены
     Address lena;
     lena.name = "Лена";
     lena.city = "Москва";
@@ -28,28 +30,36 @@ int main(int argc, char** argv)
     lena.postcode = 123456;
     lena.roomNum = 3;
     lena.street = "Кольцевая";
+    // Рома живет в том же доме, что и Лена (случайно совпало)
+    Address roma = lena;
+    roma.name = "Рома";
+    roma.roomNum = 56;
 
-    printAddress(jonn);
+    printAddress(&jonn);
     std::cout << std::endl;
 
-    printAddress(lena);
+    printAddress(&lena);
+    std::cout << std::endl;
+
+    printAddress(&roma);
     std::cout << std::endl;
 
     return 0;
 }
 
-
-void printAddress(const Address& address)
+// да, через ссылку удобней, но хотелось через указатель
+// прикольно смотрится символ ->  )
+void printAddress(const Address* address)
 {
     using namespace std;
 
-    cout << address.name << endl << "-----------" << endl
-        << "Страна: " << address.country << endl
-        << "Город: " << address.city << endl
-        << "Улица: " << address.street << endl
-        << "Номер дома: " << address.homeNum << endl
-        << "Номер квартиры: " << address.roomNum << endl
-        << "Индекс: " << address.postcode << endl;
+    cout << address->name << endl << "-----------" << endl
+        << "Страна: " << address->country << endl
+        << "Город: " << address->city << endl
+        << "Улица: " << address->street << endl
+        << "Номер дома: " << address->homeNum << endl
+        << "Номер квартиры: " << address->roomNum << endl
+        << "Индекс: " << address->postcode << endl;
 }
 
 /*
